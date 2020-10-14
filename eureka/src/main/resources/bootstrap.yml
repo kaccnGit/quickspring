@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: infowork-eureka
+  profiles:
+    active: slave0
+
+eureka:
+  server:
+    #### 清理间隔（单位毫秒，默认是60*1000），开发环境设置如下可快速移除不可用的服务 im
+    ##eviction-interval-timer-in-ms: 5000
+    enable-self-preservation: false
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
