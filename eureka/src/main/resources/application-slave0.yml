@@ -23,9 +23,9 @@ eureka:
     instance-info-replication-interval-seconds: 10
     registry-fetch-interval-seconds: 30  #从eureka服务端获取注册信息的间隔时间
 #    service-url:
-#      defaultZone: http://infowork-eureka-slave-1:9010/eureka,http://infowork-eureka-slave-2:9010/eureka
+#      defaultZone: http://eureka-slave-1:9010/eureka,http://eureka-slave-2:9010/eureka
 #      本地启动参数：-Deureka.client.service-url.defaultZone=""
-#      http://127.0.0.1:9010/eureka
+#      http://127.0.0.1:9080/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}

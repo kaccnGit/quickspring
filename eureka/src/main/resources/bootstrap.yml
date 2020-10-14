@@ -1,6 +1,6 @@
 spring:
   application:
-    name: infowork-eureka
+    name: eureka
   profiles:
     active: slave0
 
