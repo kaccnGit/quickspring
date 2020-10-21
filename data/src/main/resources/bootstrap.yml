@@ -1,0 +1,66 @@
+server:
+  port: 9022
+
+
+#远程配置中心
+spring:
+  application:
+    name: infowork-data
+  zipkin:
+    base-url: http://infowork-zipkin-svc:9016
+  cloud:
+    config:
+      fail-fast: true
+      #  本地启动参数：-Dspring.cloud.config.uri=""
+      #  http://127.0.0.1:9008
+      #  外网：测试环境
+      #  uri: http://config.dev.1genehealth.com:30908
+      #  外网：线上环境
+      #  uri: http://config.1genehealth.com:30908
+      #  内网：集群环境变量（阿里云） spring.cloud.config.uri
+      #  http://infowork-config-svc:9008
+
+      #  本地启动参数：-Dspring.cloud.config.profile=""
+      #  local
+      #  测试环境
+      #  profile: dev
+      #  线上环境
+      #  profile: pro
+      #  集群环境变量（阿里云） spring.cloud.config.profile
+      #  dev或其他
+
+      label: master
+      name: application-infowork-data
+
+# 注册中心
+eureka:
+  #  client:
+  #    serviceUrl:
+  #  本地启动参数：-Deureka.client.service-url.defaultZone=""
+  #  http://127.0.0.1:9010/eureka/
+  #  外网：测试环境
+  #  defaultZone: http://register.dev.1genehealth.com:30810/eureka/
+  #  外网：线上环境
+  #  defaultZone: http://register.1genehealth.com:30810/eureka/
+  #  内网：集群环境变量（阿里云） eureka.client.serviceUrl.defaultZone
+  #  defaultZone: http://infowork-eureka-slave-0:9010/eureka,http://infowork-eureka-slave-1:9010/eureka,http://infowork-eureka-slave-2:9010/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+log:
+  controller:
+    enabled: true
+logging:
+  level:
+    com.onegene.data: debug

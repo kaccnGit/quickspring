@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @author: kaccn
+ * @author: user
  * @description: DataOrderDetailsFallback
  * @create: 2020-10-21 09:30
  **/
