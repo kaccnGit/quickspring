@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author: user
- * @description: DataOrderDetailsFallback
+ * @description: DataFallback
  * @create: 2020-10-21 09:30
  **/
 @Component
@@ -17,7 +17,7 @@ public class DataFallback implements DataService {
 
     @Override
     public String getdata(Long orderId) {
-        log.info("data模块 findOrderDetailsByOrderId 断路器触发");
+        log.info("data模块 getdata 断路器触发");
         throw new HystrixBadRequestException(StatusCode.SERVICE_ERROR_MSG);
     }
 }
